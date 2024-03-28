@@ -1,35 +1,36 @@
 {
   "name": "strapi-starter",
-  "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "private": true,
+  "description": "Strapi starter with PostgreSQL database, test setup and Docker",
+  "license": "MIT",
+  "author": {
+    "name": "PALO IT"
+  },
   "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
     "build": "strapi build",
+    "develop": "strapi develop",
+    "docker:dev": "docker-compose -f ./docker-compose.yml --env-file .env up -d",
+    "start": "strapi start",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.21.1",
-    "@strapi/plugin-users-permissions": "4.21.1",
-    "@strapi/plugin-i18n": "4.21.1",
     "@strapi/plugin-cloud": "4.21.1",
+    "@strapi/plugin-i18n": "4.21.1",
+    "@strapi/plugin-users-permissions": "4.21.1",
+    "@strapi/strapi": "4.21.1",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
     "styled-components": "5.3.3"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
-  "strapi": {
-    "uuid": "79187c9d-dc09-4cc4-847f-6aff82750b92"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "strapi": {
+    "uuid": "79187c9d-dc09-4cc4-847f-6aff82750b92"
+  }
 }

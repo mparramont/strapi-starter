@@ -1,0 +1,35 @@
+version: "3"
+services:
+  strapi-starter-database:
+    container_name: strapi-starter-database
+    platform: linux/amd64
+    restart: unless-stopped
+    env_file: .env
+    image: postgres:14.0-alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - strapi-starter-data:/var/lib/postgresql/data/
+    ports:
+      - "${DATABASE_PORT}:5432"
+
+  strapi-starter-test-database:
+    container_name: strapi-starter-test-database
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    env_file: .env
+    image: postgres:14.0-alpine
+    environment:
+      POSTGRES_USER: ${TEST_DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${TEST_DATABASE_PASSWORD}
+      POSTGRES_DB: ${TEST_DATABASE_NAME}
+    volumes:
+      - strapi-starter-test-data:/var/lib/postgresql/data/
+    ports:
+      - "${TEST_DATABASE_PORT}:5432"
+
+volumes:
+  strapi-starter-data:
+  strapi-starter-test-data:
