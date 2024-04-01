@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "access_roles",
+  "info": {
+    "singularName": "access-role",
+    "pluralName": "access-roles",
+    "displayName": "Access Role"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true
+    },
+    "accessRoles_find": {
+      "type": "boolean"
+    },
+    "accessRoles_create": {
+      "type": "boolean"
+    },
+    "accessRoles_findOne": {
+      "type": "boolean"
+    },
+    "accessRoles_update": {
+      "type": "boolean"
+    },
+    "accessRoles_delete": {
+      "type": "boolean"
+    }
+  }
+}

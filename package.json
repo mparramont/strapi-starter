@@ -12,7 +12,9 @@
     "develop": "strapi develop",
     "docker:dev": "docker-compose -f ./docker-compose.yml --env-file .env up -d",
     "start": "strapi start",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "test": "jest --runInBand --forceExit",
+    "test:reset-database": "docker rm -f strapi-starter-test-database; docker volume rm strapi-starter_strapi-starter-test-data; yarn docker:dev"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "4.21.1",
@@ -25,12 +27,19 @@
     "react-router-dom": "5.3.4",
     "styled-components": "5.3.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2"
+  },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "79187c9d-dc09-4cc4-847f-6aff82750b92"
+    "uuid": "79187c9d-dc09-4cc4-847f-6aff82750b92",
+    "telemetryDisabled": true
   }
 }
