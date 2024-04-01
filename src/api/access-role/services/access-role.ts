@@ -17,7 +17,7 @@ export default factories.createCoreService(
       const userWithAccessRole = await strapi.entityService.findOne(
         "plugin::users-permissions.user",
         user.id,
-        { populate: ["accessRole"] }
+        { populate: ["accessRole"] },
       );
 
       if (!userWithAccessRole.accessRole) return false;
@@ -29,7 +29,7 @@ export default factories.createCoreService(
       // TODO: optimize by loading the userWithAccessRole only once
       return (
         await Promise.all(
-          permissions.map((permission) => this.hasPermission(ctx, permission))
+          permissions.map((permission) => this.hasPermission(ctx, permission)),
         )
       ).includes(true);
     },
@@ -59,5 +59,5 @@ export default factories.createCoreService(
         redactAttribute(data, field);
       });
     },
-  })
+  }),
 );
