@@ -17,12 +17,12 @@ describe("acess-role services", () => {
     const userHasPermission = (user, permission) =>
       AccessRoleService({ strapi }).hasPermission(
         { state: { user } },
-        permission
+        permission,
       );
 
     it("returns true if no user, since it's being accessed by API Token -> allow everything", async () => {
       expect(
-        await userHasPermission(null, AccessRolePermissions.accessRoles_find)
+        await userHasPermission(null, AccessRolePermissions.accessRoles_find),
       ).toBe(true);
     });
 
@@ -30,8 +30,8 @@ describe("acess-role services", () => {
       expect(
         await userHasPermission(
           authenticatedUser,
-          AccessRolePermissions.accessRoles_find
-        )
+          AccessRolePermissions.accessRoles_find,
+        ),
       ).toBe(true);
     });
 
@@ -39,14 +39,14 @@ describe("acess-role services", () => {
       await strapi.entityService.update(
         "plugin::users-permissions.user",
         authenticatedUser.id,
-        { data: { accessRole: noAccessRole.id } }
+        { data: { accessRole: noAccessRole.id } },
       );
 
       expect(
         await userHasPermission(
           authenticatedUser,
-          AccessRolePermissions.accessRoles_find
-        )
+          AccessRolePermissions.accessRoles_find,
+        ),
       ).toBe(false);
     });
   });
@@ -55,14 +55,14 @@ describe("acess-role services", () => {
     const userHasAnyPermission = (user, permissions) =>
       AccessRoleService({ strapi }).hasAnyPermission(
         { state: { user } },
-        permissions
+        permissions,
       );
 
     it("returns true if no user, since it's being accessed by API Token -> allow everything", async () => {
       expect(
         await userHasAnyPermission(null, [
           AccessRolePermissions.accessRoles_find,
-        ])
+        ]),
       ).toBe(true);
     });
 
@@ -71,7 +71,7 @@ describe("acess-role services", () => {
         await userHasAnyPermission(authenticatedUser, [
           AccessRolePermissions.accessRoles_find,
           AccessRolePermissions.accessRoles_findOne,
-        ])
+        ]),
       ).toBe(true);
     });
 
@@ -79,14 +79,14 @@ describe("acess-role services", () => {
       await strapi.entityService.update(
         "api::access-role.access-role",
         superAdminRole.id,
-        { data: { [AccessRolePermissions.accessRoles_find]: false } }
+        { data: { [AccessRolePermissions.accessRoles_find]: false } },
       );
 
       expect(
         await userHasAnyPermission(authenticatedUser, [
           AccessRolePermissions.accessRoles_find,
           AccessRolePermissions.accessRoles_findOne,
-        ])
+        ]),
       ).toBe(true);
     });
 
@@ -99,14 +99,14 @@ describe("acess-role services", () => {
             [AccessRolePermissions.accessRoles_find]: false,
             [AccessRolePermissions.accessRoles_findOne]: false,
           },
-        }
+        },
       );
 
       expect(
         await userHasAnyPermission(authenticatedUser, [
           AccessRolePermissions.accessRoles_find,
           AccessRolePermissions.accessRoles_findOne,
-        ])
+        ]),
       ).toBe(false);
     });
   });

@@ -15,6 +15,6 @@ export default async (policyContext, config, { strapi }) => {
     return service.hasAnyPermission(policyContext, config.permissions);
 
   throw new ApplicationError(
-    "access-role-can-access policy requires passing `permission` or `permissions`"
+    "access-role-can-access policy requires passing `permission` or `permissions`",
   );
 };

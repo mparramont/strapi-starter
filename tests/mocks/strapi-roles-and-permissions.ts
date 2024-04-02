@@ -51,7 +51,7 @@ export const insertPermissions = async (strapi) => {
 
     await strapi.plugins["users-permissions"].services.role.updateRole(
       role.id,
-      { ...role, permissions }
+      { ...role, permissions },
     );
   };
 

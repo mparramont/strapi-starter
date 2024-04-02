@@ -12,7 +12,7 @@ describe("/api/access-roles", () => {
   describe("GET /api/access-roles", () => {
     const getAccessRoles = async ({ jwt }: { jwt?: string } = {}) => {
       const getRequest = request(strapi.server.httpServer).get(
-        "/api/access-roles"
+        "/api/access-roles",
       );
       return jwt
         ? getRequest.set("Authorization", `Bearer ${jwt}`)
@@ -40,7 +40,7 @@ describe("/api/access-roles", () => {
         expect(
           response.body.data
             .map((accessRole) => accessRole.attributes.name)
-            .sort()
+            .sort(),
         ).toEqual(["No Access", "Super Admin"]);
       });
 
@@ -48,7 +48,7 @@ describe("/api/access-roles", () => {
         await strapi.entityService.update(
           "plugin::users-permissions.user",
           authenticatedUser.id,
-          { data: { accessRole: noAccessRole.id } }
+          { data: { accessRole: noAccessRole.id } },
         );
         const response = await getAccessRoles({ jwt });
 

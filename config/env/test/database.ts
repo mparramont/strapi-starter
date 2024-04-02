@@ -16,7 +16,7 @@ export default ({ env }) => ({
         cipher: env("TEST_DATABASE_SSL_CIPHER", undefined),
         rejectUnauthorized: env.bool(
           "TEST_DATABASE_SSL_REJECT_UNAUTHORIZED",
-          true
+          true,
         ),
       },
       schema: env("TEST_DATABASE_SCHEMA", "public"),

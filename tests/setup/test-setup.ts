@@ -9,7 +9,7 @@ const cleanup = async () => {
   // cleanup api content types
   // This is one way to get a list of the existing content types, might be better ones
   const contentTypes = Object.keys(strapi.services).filter((service) =>
-    service.startsWith("api")
+    service.startsWith("api"),
   );
   for (const contentType of contentTypes) {
     await cleanupContentType(contentType);
