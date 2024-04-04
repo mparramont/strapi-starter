@@ -2,7 +2,7 @@ version: "3"
 services:
   strapi-starter-database:
     container_name: strapi-starter-database
-    platform: linux/amd64
+    platform: linux/arm64
     restart: unless-stopped
     env_file: .env
     image: postgres:14.0-alpine
@@ -17,7 +17,7 @@ services:
 
   strapi-starter-test-database:
     container_name: strapi-starter-test-database
-    platform: linux/amd64 #for platform error on Apple M1 chips
+    platform: linux/arm64
     restart: unless-stopped
     env_file: .env
     image: postgres:14.0-alpine
