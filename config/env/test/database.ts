@@ -4,8 +4,8 @@ export default ({ env }) => ({
     connection: {
       connectionString: env("TEST_DATABASE_URL"),
       host: env("TEST_DATABASE_HOST", "localhost"),
-      port: env.int("TEST_DATABASE_PORT", 5442),
-      database: env("TEST_DATABASE_NAME", "strapi-starter-database"),
+      port: env.int("TEST_DATABASE_PORT", 5443),
+      database: env("TEST_DATABASE_NAME", "strapi-starter-test-database"),
       user: env("TEST_DATABASE_USERNAME", "admin"),
       password: env("TEST_DATABASE_PASSWORD", "admin"),
       ssl: env.bool("TEST_DATABASE_SSL", false) && {
