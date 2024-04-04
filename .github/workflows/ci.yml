@@ -7,9 +7,18 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     environment: test
+    env:
+      APP_KEYS: ${{ secrets.APP_KEYS }}
+      ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
+      API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
+      TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      TEST_DATABASE_USERNAME: ${{ vars.TEST_DATABASE_USERNAME }}
+      TEST_DATABASE_PASSWORD: ${{ vars.TEST_DATABASE_PASSWORD }}
+      TEST_DATABASE_NAME: ${{ vars.TEST_DATABASE_NAME }}
 
     services:
       postgres:
