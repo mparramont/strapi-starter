@@ -2,20 +2,38 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: test
+
+    services:
+      postgres-usersphere:
+        image: postgres
+        env:
+          POSTGRES_USER: ${{ vars.TEST_DATABASE_USERNAME }}
+          POSTGRES_PASSWORD: ${{ vars.TEST_DATABASE_PASSWORD }}
+          POSTGRES_DB: ${{ vars.TEST_DATABASE_NAME }}
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - ${{ vars.TEST_DATABASE_PORT }}:5432
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 20
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        cache: 'yarn'
-    - run: yarn --frozen-lockfile
-    - run: yarn build
-    - run: yarn test
+      - uses: actions/checkout@v3
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "yarn"
+      - run: yarn --frozen-lockfile
+      - run: yarn build
+      - run: yarn test
