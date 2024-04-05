@@ -1,6 +1,6 @@
 export default ({ env }) => ({
   connection: {
-    client: env("TEST_DATABASE_CLIENT", "postgres"),
+    client: "postgres",
     connection: {
       connectionString: env("TEST_DATABASE_URL"),
       host: env("TEST_DATABASE_HOST", "localhost"),
