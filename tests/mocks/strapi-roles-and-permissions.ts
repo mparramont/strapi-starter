@@ -1,3 +1,5 @@
+import { Strapi } from "@strapi/strapi";
+
 const customRole = {
   // high id to avoid clashing with ids Strapi uses when creating a model
   id: 10001,
@@ -33,20 +35,21 @@ const authenticatedRolePermissions = {
 
 const roles = [customRole];
 
-export const insertRoles = async (strapi) => {
+export const insertRoles = async (strapi: Strapi) => {
   for (const role of roles) {
     await strapi.plugins["users-permissions"].services.role.createRole(role);
   }
 };
 
-export const getRole = async (name) => {
+export const getRole = async (name: string) => {
+  await strapi.entityService.findOne("admin::api-token", 1);
   return strapi
     .query("plugin::users-permissions.role")
     .findOne({ where: { name }, populate: ["permissions"] });
 };
 
-export const insertPermissions = async (strapi) => {
-  const setRolePermissions = async (name, permissions) => {
+export const insertPermissions = async (strapi: Strapi) => {
+  const setRolePermissions = async (name: string, permissions: Object) => {
     const role = await getRole(name);
 
     await strapi.plugins["users-permissions"].services.role.updateRole(

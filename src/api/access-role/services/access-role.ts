@@ -2,11 +2,11 @@
  * access-role service
  */
 
-import { factories } from "@strapi/strapi";
+import { Strapi, factories } from "@strapi/strapi";
 
 export default factories.createCoreService(
   "api::access-role.access-role",
-  ({ strapi }) => ({
+  ({ strapi }: { strapi: Strapi }) => ({
     async hasPermission(ctx, permission) {
       const { user } = ctx.state;
       // if there is no user, it's being accessed by access token, so allow everything

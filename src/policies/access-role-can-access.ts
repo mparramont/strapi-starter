@@ -2,11 +2,16 @@
  * access-role-can-access policy
  */
 
+import { Strapi } from "@strapi/strapi";
 import AccessRoleService from "../api/access-role/services/access-role";
 import { errors } from "@strapi/utils";
 const { ApplicationError } = errors;
 
-export default async (policyContext, config, { strapi }) => {
+export default async (
+  policyContext,
+  config,
+  { strapi }: { strapi: Strapi },
+) => {
   const service = AccessRoleService({ strapi });
 
   if (config.permission)
