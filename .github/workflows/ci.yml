@@ -47,5 +47,7 @@ jobs:
           node-version: 20
           cache: "yarn"
       - run: yarn --frozen-lockfile
+      - run: yarn check-format
+      - run: yarn lint
       - run: yarn build
       - run: yarn test

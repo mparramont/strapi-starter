@@ -11,6 +11,8 @@
     "build": "strapi build",
     "develop": "strapi develop",
     "docker:dev": "docker-compose -f ./docker-compose.yml --env-file .env up -d",
+    "check-format": "prettier --check .",
+    "lint": "eslint --max-warnings=0 .",
     "postinstall": "husky",
     "start": "strapi start",
     "strapi": "strapi",
