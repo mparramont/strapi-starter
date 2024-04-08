@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "strapi build",
+    "dev": "strapi develop",
     "develop": "strapi develop",
     "docker:dev": "docker-compose -f ./docker-compose.yml --env-file .env up -d",
     "check-format": "prettier --check .",

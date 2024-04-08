@@ -1,15 +1,19 @@
 # Strapi Starter
 
-Includes:
+This is a Strapi starter for the latest version as of its setup, 4.22.1. It includes:
 
 - Strapi setup with Typescript and PostgreSQL
 - Docker setup with docker-compose for development and test
 - Test setup using PostgreSQL as test database
+- ESLint and Prettier configuration
+- CI configuration for GitHub Actions
 - Simple Access Role setup as a Strapi Content-Type
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+For more information about the motivation for this Starter within PALO IT, check this [Sharepoint page](https://paloit2016.sharepoint.com/sites/WOW/SitePages/Strapi-Guidelines.aspx).
 
-### `develop`
+## Available commands
+
+### `develop` (or `dev`)
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
@@ -19,7 +23,7 @@ yarn develop
 
 ### `test`
 
-Launch your tests. Setup based on [this](https://docs.strapi.io/dev-docs/testing) + improved in this repo.
+Launch your tests. Setup based on [this](https://docs.strapi.io/dev-docs/testing) + improved in this repo to allow running tests individually.
 
 ```console
 yarn test
