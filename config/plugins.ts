@@ -1,4 +1,4 @@
-export default ({ env }) => ({
+export default () => ({
   "users-permissions": {
     config: {
       register: {

@@ -49,7 +49,7 @@ export const getRole = async (name: string) => {
 };
 
 export const insertPermissions = async (strapi: Strapi) => {
-  const setRolePermissions = async (name: string, permissions: Object) => {
+  const setRolePermissions = async (name: string, permissions: object) => {
     const role = await getRole(name);
 
     await strapi.plugins["users-permissions"].services.role.updateRole(
