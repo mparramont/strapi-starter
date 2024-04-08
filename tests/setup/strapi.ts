@@ -31,6 +31,8 @@ async function cleanupStrapi() {
 
   // close db connection
   await strapi.db.connection.destroy();
+
+  await strapi.destroy();
 }
 
 export { setupStrapi, cleanupStrapi };
