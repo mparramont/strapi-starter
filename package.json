@@ -18,6 +18,7 @@
     "start": "strapi start",
     "strapi": "strapi",
     "test": "jest --runInBand --forceExit",
+    "test:coverage": "jest --runInBand --forceExit --coverage",
     "test:reset-database": "docker rm -f strapi-starter-test-database; docker volume rm strapi-starter_strapi-starter-test-data; yarn docker:dev"
   },
   "lint-staged": {

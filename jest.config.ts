@@ -11,6 +11,7 @@ module.exports = {
       statements: -20,
     },
   },
+  coveragePathIgnorePatterns: ["<rootDir>/tests/"],
   moduleNameMapper: {
     "^axios$": require.resolve("axios"),
   },

@@ -49,6 +49,21 @@ describe("acess-role services", () => {
         ),
       ).toBe(false);
     });
+
+    it("returns false if user does not have an accessRole", async () => {
+      await strapi.entityService.update(
+        "plugin::users-permissions.user",
+        authenticatedUser.id,
+        { data: { accessRole: null } },
+      );
+
+      expect(
+        await userHasPermission(
+          authenticatedUser,
+          AccessRolePermissions.accessRoles_find,
+        ),
+      ).toBe(false);
+    });
   });
 
   describe("hasAnyPermission", () => {
@@ -108,6 +123,77 @@ describe("acess-role services", () => {
           AccessRolePermissions.accessRoles_findOne,
         ]),
       ).toBe(false);
+    });
+  });
+
+  describe("redactFields", () => {
+    const redactFields = (data, fields) =>
+      AccessRoleService({ strapi }).redactFields(data, fields);
+
+    it("redacts specified fields from data", async () => {
+      const data = {
+        id: 1,
+        attributes: {
+          name: "John",
+          email: "john@example.com",
+          phone: null,
+          address: {
+            data: {
+              id: 2,
+              attributes: {
+                street: "123 Main St",
+                city: "New York",
+                country: "USA",
+              },
+            },
+          },
+          orders: {
+            data: [
+              {
+                id: 3,
+                attributes: {
+                  sku: "123",
+                  quantity: 2,
+                },
+              },
+              {
+                id: 4,
+                attributes: {
+                  sku: "456",
+                  quantity: 1,
+                },
+              },
+            ],
+          },
+        },
+      };
+
+      await redactFields(data, ["email", "phone", "address", "orders"]);
+
+      expect(data).toEqual({
+        id: 1,
+        attributes: {
+          name: "John",
+          address: {
+            data: {
+              id: null,
+              attributes: {},
+            },
+          },
+          orders: {
+            data: [
+              {
+                id: null,
+                attributes: {},
+              },
+              {
+                id: null,
+                attributes: {},
+              },
+            ],
+          },
+        },
+      });
     });
   });
 });
